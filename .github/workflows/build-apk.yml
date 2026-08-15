@@ -24,17 +24,6 @@ jobs:
         run: |
           pip3 install --user buildozer cython
 
-      - name: Prepare Android SDK
-        run: |
-          mkdir -p ~/.buildozer
-          yes | ~/.local/bin/buildozer android debug || true
-
-      - name: Accept Android SDK licenses
-        run: |
-          SDK="$HOME/.buildozer/android/platform/android-sdk"
-          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses || true
-          "$SDK/cmdline-tools/latest/bin/sdkmanager" "build-tools;37.0.0"
-
       - name: Build APK
         run: |
           ~/.local/bin/buildozer android debug
